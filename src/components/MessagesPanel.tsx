@@ -24,6 +24,10 @@ export default function MessagesPanel() {
   const dispatch = useAppDispatch();
   const bottomRef = useRef<undefined | HTMLDivElement>(undefined);
 
+  const displayedUser = useAppSelector((state) =>
+    state.chat.find((user) => user.username === selectedUser.username)
+  );
+
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
   };
@@ -82,7 +86,7 @@ export default function MessagesPanel() {
             <ListItemIcon>
               <Avatar>{selectedUser.username[0]}</Avatar>
             </ListItemIcon>
-            <ListItemText>{selectedUser.username}</ListItemText>
+            <ListItemText primary={displayedUser.username} />
           </ListItem>
         </List>
       </Toolbar>

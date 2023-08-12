@@ -24,6 +24,8 @@ io.use(socketAuth);
 io.on("connection", (socket) => {
   socket.join(socket.username);
 
+  socket.broadcast.emit("user_connected", socket.username);
+
   socket.on("private_message", async (data, ack) => {
     const { fromID, toID, toUser, fromUser, message } = data;
     console.log(toUser, socket.username);

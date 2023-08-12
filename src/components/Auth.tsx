@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppDispatch } from "../redux/hooks";
 import { useConnectQuery } from "../redux/apiSlice";
 import { login } from "../redux/currentUserSlice";
 import { setInitialChatData } from "../redux/chatSlice";
@@ -12,11 +12,12 @@ export default function Auth() {
     dispatch(login(data.self));
     dispatch(setInitialChatData(data.messages));
   }
+  console.log(isSuccess, isLoading, isFetching, data);
 
   return (
     <>
-      {(!isSuccess && isFetching) || isLoading ? (
-        <p>loading...</p>
+      {isLoading ? (
+        <p>Loading</p>
       ) : data ? (
         <Outlet />
       ) : (

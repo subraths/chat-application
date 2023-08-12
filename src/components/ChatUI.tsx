@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import MessagesPanel from "./MessagesPanel";
 import { useEffect } from "react";
 import { socket } from "../socket";
-import { addIncomingMessage } from "../redux/chatSlice";
+import { addIncomingMessage, setUserConnected } from "../redux/chatSlice";
 
 const ChatUI = () => {
   const selectedUser = useAppSelector((state) => state.selectedUser);
@@ -14,6 +14,11 @@ const ChatUI = () => {
 
     socket.on("private_message", (data) => {
       dispatch(addIncomingMessage(data));
+    });
+
+    socket.on("user_connected", (username) => {
+      console.log(username);
+      dispatch(setUserConnected(username));
     });
 
     return () => {

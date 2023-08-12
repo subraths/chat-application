@@ -24,6 +24,20 @@ export const api = createApi({
         body: user,
       }),
     }),
+    searchUser: build.mutation({
+      query: (username) => ({
+        url: "search-user",
+        method: "POST",
+        body: username,
+      }),
+    }),
+    getUser: build.mutation({
+      query: (username) => ({
+        url: "get-user",
+        method: "POST",
+        body: username,
+      }),
+    }),
     /*
     messageChannel: build.query({
       queryFn: () => ({ data: [] }),
@@ -36,4 +50,10 @@ export const api = createApi({
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation, useConnectQuery } = api;
+export const {
+  useSignUpMutation,
+  useSignInMutation,
+  useConnectQuery,
+  useSearchUserMutation,
+  useGetUserMutation,
+} = api;

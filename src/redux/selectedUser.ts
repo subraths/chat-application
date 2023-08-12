@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type Messages = {
+export type Messages = {
   message_id: number | undefined;
   message: string;
   receiver: string;
